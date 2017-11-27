@@ -8,7 +8,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/this_list_element_is_empty"
+        android:text="This note has no title"
         android:textSize="40sp"
         android:layout_margin="10dp"
         android:textColor="#000000"/>
@@ -17,7 +17,7 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/this_list_element_has_no_description"
+        android:text="This note has no body"
         android:textSize="20sp"
         android:layout_margin="10dp"/>
 
