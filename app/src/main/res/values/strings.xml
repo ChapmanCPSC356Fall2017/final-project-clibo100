@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="this_list_element_is_empty">this_list_element_is_empty</string>
+    <string name="this_list_element_has_no_description">this_list_element_has_no_description</string>
+</resources>
