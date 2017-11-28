@@ -3,10 +3,6 @@ package edu.chapman.finalproject;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-/**
- * Created by Sea Air AHHHHHHHH on 11/27/2017.
- */
-
 public class NoteDescriptionActivity extends MainActivity{
     public static final String EXTRA_NOTE_ID = "note_id";
 
