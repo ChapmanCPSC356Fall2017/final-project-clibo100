@@ -84,7 +84,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
         public void onClick(View view)
         {
             Intent listElementIntent = new Intent(view.getContext(), NoteDescriptionActivity.class);
-            listElementIntent.putExtra(NoteDescriptionActivity.EXTRA_LISTELEMENT_ID, this.note.getId());
+            listElementIntent.putExtra(NoteDescriptionActivity.EXTRA_NOTE_ID, this.note.getId());
 
             view.getContext().startActivity(listElementIntent);
         }
