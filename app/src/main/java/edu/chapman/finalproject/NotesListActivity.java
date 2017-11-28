@@ -1,8 +1,12 @@
 package edu.chapman.finalproject;
 
-/**
- * Created by Sea Air AHHHHHHHH on 11/27/2017.
- */
+import android.support.v4.app.Fragment;
 
-public class NotesListActivity {
+public class NotesListActivity extends MainActivity{
+    @Override
+    //returns new activity
+    protected Fragment getFragment()
+    {
+        return new NotesListFragment();
+    }
 }

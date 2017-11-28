@@ -2,10 +2,6 @@ package edu.chapman.finalproject;
 
 import java.util.UUID;
 
-/**
- * Created by Sea Air AHHHHHHHH on 11/27/2017.
- */
-
 public class NoteModel {
     private String id;
     private String title;
