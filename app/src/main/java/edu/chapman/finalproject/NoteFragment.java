@@ -14,7 +14,7 @@ public class NoteFragment extends Fragment {
     private NoteModel note;
 
     @Override
-    //gets all the info from the listelementactivity
+    //gets all the info from the notedescriptionactivity
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
