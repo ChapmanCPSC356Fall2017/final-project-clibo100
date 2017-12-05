@@ -1,14 +1,11 @@
 package edu.chapman.finalproject;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 public abstract class MainActivity extends AppCompatActivity {
     protected abstract Fragment getFragment();
-    FloatingActionButton FAB;
 
     @Override
 
@@ -17,7 +14,6 @@ public abstract class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FAB = findViewById(R.id.myFAB);
         showFragment(getFragment());
     }
 
@@ -29,8 +25,5 @@ public abstract class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void onFABClick(View view) {
-
-    }
 }
 
