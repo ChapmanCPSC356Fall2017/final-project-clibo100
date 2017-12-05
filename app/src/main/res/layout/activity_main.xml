@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_gravity="bottom|end"
+            android:onClick="onFABClick"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/plus"
             />
