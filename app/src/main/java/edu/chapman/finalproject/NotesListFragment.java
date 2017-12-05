@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +28,9 @@ public class NotesListFragment extends Fragment{
         // according to ryan this is lame and i shouldn't study it i should just do it
         ListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//        ItemTouchHelper.Callback callback = new ListElementTouchHelper(adapter);
-//        ItemTouchHelper helper = new ItemTouchHelper(callback);
-//        helper.attachToRecyclerView(ListView);
+        ItemTouchHelper.Callback callback = new NoteTouchHelper(adapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(ListView);
 
         return v;
     }

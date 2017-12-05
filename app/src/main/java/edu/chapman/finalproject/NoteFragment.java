@@ -8,7 +8,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NoteFragment extends Fragment {
     private NoteModel note;
@@ -31,54 +34,24 @@ public class NoteFragment extends Fragment {
     {
         View v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
-        TextView titleTextView = v.findViewById(R.id.tv_title);
-        titleTextView.setText(this.note.getTitle());
+        final EditText titleEditText = v.findViewById(R.id.et_title);
+        titleEditText.setText(this.note.getTitle());
 
-        TextView descriptionTextView = v.findViewById(R.id.tv_description);
-        descriptionTextView.setText(this.note.getBody());
+        final EditText bodyEditText = v.findViewById(R.id.et_description);
+        bodyEditText.setText(this.note.getBody());
 
-        titleTextView.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                note.setTitle(editable.toString());
-            }
-        });
-
-        descriptionTextView.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                note.setBody(editable.toString());
-            }
-        });
+        Button saveButton = v.findViewById(R.id.bt_save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                note.setTitle(titleEditText.getEditableText().toString());
+                note.setBody(bodyEditText.getEditableText().toString());
+                Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_SHORT).show();
+            }});
 
         return v;
+    }
+
+    public void onClick(View v) {
+
     }
 }
