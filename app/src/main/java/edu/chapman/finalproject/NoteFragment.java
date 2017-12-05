@@ -46,7 +46,8 @@ public class NoteFragment extends Fragment {
                 note.setTitle(titleEditText.getEditableText().toString());
                 note.setBody(bodyEditText.getEditableText().toString());
                 Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_SHORT).show();
-            }});
+            }
+        });
 
         return v;
     }
