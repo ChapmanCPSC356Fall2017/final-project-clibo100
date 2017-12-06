@@ -5,4 +5,6 @@
     <string name="this_note_has_no_title">This note has no title</string>
     <string name="this_note_has_no_body">This note has no body</string>
     <string name="save">Save</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
 </resources>
