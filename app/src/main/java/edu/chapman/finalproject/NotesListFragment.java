@@ -6,11 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class NotesListFragment extends Fragment{
+    private static final String LOGTAG = "NotesListFragment";
     private NotesListAdapter adapter;
 
     @Nullable
@@ -18,6 +20,7 @@ public class NotesListFragment extends Fragment{
     //inflates view and calls up the swiping and swapping stuff
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        Log.d(LOGTAG, "onCreateView");
         View v = inflater.inflate(R.layout.fragment_noteslist, container, false);
 
         RecyclerView ListView = v.findViewById(R.id.rv_list_elements);
@@ -39,6 +42,7 @@ public class NotesListFragment extends Fragment{
     //changes data if it is notified to
     public void onResume()
     {
+        Log.d(LOGTAG, "noteslistfragment onresume");
         super.onResume();
 
         this.adapter.notifyDataSetChanged();

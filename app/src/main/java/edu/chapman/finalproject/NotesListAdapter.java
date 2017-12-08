@@ -1,5 +1,6 @@
 package edu.chapman.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.ViewHolder>{
     private final String LOGTAG = "ListAdapter";
+    protected Context context;
 
     @Override
     //inflates the view
@@ -18,6 +20,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
         Log.d(LOGTAG, "onCreateViewHolder()");
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        this.context = parent.getContext();
         View v = inflater.inflate(R.layout.cell_note, parent, false);
 
         return new ViewHolder(v);
@@ -29,29 +32,29 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
     {
         Log.d(LOGTAG, "onBindViewHolder(" + position + ")");
         // Get list element at specified position
-        NoteModel note = NoteCollection.GetInstance().getListElements().get(position);
+        NoteModel note = NoteCollection.GetInstance(context).getListElements().get(position);
 
         // Setup the ViewHolder
         holder.setup(note);
     }
 
     @Override
-    //gets amount of elements in collection
-    public int getItemCount()
-    {
-        Log.d(LOGTAG, "getItemCount()");
-        return NoteCollection.GetInstance().getListElements().size();
+    public int getItemCount() {
+        int count =  NoteCollection.GetInstance(this.context).getListElements().size();
+        Log.d(LOGTAG, "getItemCount() is now returning " + count);
+        return count;
     }
 
     //removes item from collection
     void remove(int position) {
-        NoteCollection.GetInstance().remove(position);
+        Log.d(LOGTAG, "getItemCount()");
+        NoteCollection.GetInstance(context).remove(position);
         notifyItemRemoved(position);
     }
 
     //swap 2 elements in collection
     void swap(int firstPosition, int secondPosition) {
-        NoteCollection.GetInstance().swap(firstPosition, secondPosition);
+        NoteCollection.GetInstance(context).swap(firstPosition, secondPosition);
         notifyItemMoved(firstPosition, secondPosition);
     }
 

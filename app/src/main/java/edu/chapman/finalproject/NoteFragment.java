@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,17 @@ import android.widget.Toast;
 
 public class NoteFragment extends Fragment {
     private NoteModel note;
+    private static final String TAG = "notefragment";
 
     @Override
     //gets all the info from the notedescriptionactivity
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
+        Log.d(TAG, "notefragment oncreate");
         super.onCreate(savedInstanceState);
 
         String listElementId = getArguments().getString(NoteDescriptionActivity.EXTRA_NOTE_ID);
-        this.note = NoteCollection.GetInstance().getListElement(listElementId);
+        this.note = NoteCollection.GetInstance(getContext()).getListElement(listElementId);
     }
 
     @Nullable
@@ -32,6 +35,7 @@ public class NoteFragment extends Fragment {
     //inflates view, sets text of stuff, etc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        Log.d(TAG, "notefragment oncreateview");
         View v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
         final EditText titleEditText = v.findViewById(R.id.et_title);
@@ -53,6 +57,7 @@ public class NoteFragment extends Fragment {
     }
 
     public void onClick(View v) {
+        Log.d(TAG, "notefragment onclick");
 
     }
 }
