@@ -1,10 +1,14 @@
 package edu.chapman.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -40,17 +44,42 @@ public class NoteDescriptionActivity extends MainActivity{
         String old_title = note.getTitle();
         note.setTitle(titleEditText.getEditableText().toString());
         note.setBody(bodyEditText.getEditableText().toString());
-
-        if (!Objects.equals(note.getTitle(), old_title))
+        if (note.getTitle() != null && !Objects.equals(note.getTitle(), "") && !Objects.equals(note.getTitle(), " "))
         {
-            NoteCollection.GetInstance(null).remove(old_title);
-            Log.d(TAG, "onClickSave() removed file with old title");
+            if (!Objects.equals(note.getTitle(), old_title)) {
+                NoteCollection.GetInstance(null).remove(old_title);
+                Log.d(TAG, "onClickSave() removed file with old title");
+            }
+
+            NoteCollection.GetInstance(null).add(note);
+            Log.d(TAG, "onClickSave() added new note");
+            frag.setNote(note);
+
+            Toast.makeText(getApplicationContext(), "Note Saved", Toast.LENGTH_SHORT).show();
         }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Note Failed to Save: Invalid Title", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action:
+                NoteModel note = new NoteModel();
+                Intent listElementIntent = new Intent(getApplicationContext(), NoteDescriptionActivity.class);
+                listElementIntent.putExtra(NoteDescriptionActivity.EXTRA_NOTE_ID, note.getId());
 
-        NoteCollection.GetInstance(null).add(note);
-        Log.d(TAG, "onClickSave() added new note");
-        frag.setNote(note);
+                getApplicationContext().startActivity(listElementIntent);
+                return true;
 
-        Toast.makeText(getApplicationContext(), "Note Saved", Toast.LENGTH_SHORT).show();
+            case R.id.back_button:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

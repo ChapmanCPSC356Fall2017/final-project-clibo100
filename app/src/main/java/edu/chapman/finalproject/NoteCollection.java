@@ -36,7 +36,6 @@ class NoteCollection {
         Log.d(TAG, "NoteCollection()");
         this.context = context;
         this.notes = new ArrayList<>();
-        Log.d(TAG, "The size of the array that should contain bozo.txt is" + notes.size());
         File[] files = context.getFilesDir().listFiles();
         for (File file : files)
         {

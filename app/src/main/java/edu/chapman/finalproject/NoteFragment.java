@@ -36,14 +36,24 @@ public class NoteFragment extends Fragment {
     //inflates view, sets text of stuff, etc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        if (this.note == null)
+        {
+            this.note = new NoteModel();
+        }
         Log.d(TAG, "onCreateView()");
         View v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
         final EditText titleEditText = v.findViewById(R.id.et_title);
-        titleEditText.setText(this.note.getTitle());
+        if (this.note.getTitle() != null)
+        {
+            titleEditText.setText(this.note.getTitle());
+        }
 
         final EditText bodyEditText = v.findViewById(R.id.et_description);
-        bodyEditText.setText(this.note.getBody());
+        if (this.note.getBody() != null)
+        {
+            bodyEditText.setText(this.note.getBody());
+        }
 
         return v;
     }
