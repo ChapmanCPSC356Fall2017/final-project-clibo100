@@ -14,15 +14,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 public class NoteFragment extends Fragment {
     private NoteModel note;
-    private static final String TAG = "notefragment";
+    private static final String TAG = "NoteFragment";
 
     @Override
     //gets all the info from the notedescriptionactivity
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
-        Log.d(TAG, "notefragment oncreate");
+        Log.d(TAG, "OnCreate()");
         super.onCreate(savedInstanceState);
 
         String listElementId = getArguments().getString(NoteDescriptionActivity.EXTRA_NOTE_ID);
@@ -31,11 +33,10 @@ public class NoteFragment extends Fragment {
 
     @Nullable
     @Override
-
     //inflates view, sets text of stuff, etc
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        Log.d(TAG, "notefragment oncreateview");
+        Log.d(TAG, "onCreateView()");
         View v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
         final EditText titleEditText = v.findViewById(R.id.et_title);
@@ -44,20 +45,18 @@ public class NoteFragment extends Fragment {
         final EditText bodyEditText = v.findViewById(R.id.et_description);
         bodyEditText.setText(this.note.getBody());
 
-        Button saveButton = v.findViewById(R.id.bt_save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                note.setTitle(titleEditText.getEditableText().toString());
-                note.setBody(bodyEditText.getEditableText().toString());
-                Toast.makeText(getContext(), "Note Saved", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         return v;
     }
 
-    public void onClick(View v) {
-        Log.d(TAG, "notefragment onclick");
+    public NoteModel getNote()
+    {
+        Log.d(TAG, "getNote()");
+        return this.note;
+    }
 
+    public void setNote(NoteModel note)
+    {
+        Log.d(TAG, "setNote()");
+        this.note = note;
     }
 }
