@@ -1,5 +1,6 @@
 package edu.chapman.finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 class NoteCollection {
     private static final String TAG = "NoteCollection";
+    @SuppressLint("StaticFieldLeak")
     private static NoteCollection collection;
     private Context context;
 
@@ -106,7 +108,8 @@ class NoteCollection {
             if (Objects.equals(file.getName(), this.notes.get(position).getTitle()))
             {
                 Log.d(TAG, "deleted " + file.getName()+"file, congrats");
-                boolean yolo = file.delete();
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
             }
             Log.d(TAG, "yo wtf");
         }
@@ -120,7 +123,8 @@ class NoteCollection {
         {
             if (Objects.equals(file.getName(), title))
             {
-                boolean tolo = file.delete();
+                //noinspection ResultOfMethodCallIgnored
+                file.delete();
             }
         }
         int x = 0;

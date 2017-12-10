@@ -1,14 +1,11 @@
 package edu.chapman.finalproject;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 
 public abstract class MainActivity extends AppCompatActivity {
     protected abstract Fragment getFragment();
@@ -20,7 +17,7 @@ public abstract class MainActivity extends AppCompatActivity {
     {
         Log.d(TAG, "mainactivity oncreate");
         super.onCreate(savedInstanceState);
-        NoteCollection nc = NoteCollection.GetInstance(this);
+        NoteCollection.GetInstance(this);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

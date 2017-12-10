@@ -42,7 +42,7 @@ public class NoteModel {
         this.date = date;
     }
 
-    public DateTime getDate()
+    DateTime getDate()
     {
         return this.date;
     }
