@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -18,6 +20,8 @@ public class NoteDescriptionActivity extends MainActivity{
     public static final String EXTRA_NOTE_ID = "note_id";
     private static final String TAG = "NoteDescriptionActivity";
     EditText titleEditText, bodyEditText;
+    CheckBox dateCheck;
+    TextView dateTimeTextView;
     NoteFragment frag;
 
     @Override
@@ -38,6 +42,8 @@ public class NoteDescriptionActivity extends MainActivity{
         Log.d(TAG, "onClickSave()");
         titleEditText = findViewById(R.id.et_title);
         bodyEditText = findViewById(R.id.et_description);
+        dateCheck = findViewById(R.id.date_check);
+        dateTimeTextView = findViewById(R.id.datetime_tv);
 
         NoteModel note = frag.getNote();
 

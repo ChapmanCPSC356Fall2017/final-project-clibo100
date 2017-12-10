@@ -1,5 +1,7 @@
 package edu.chapman.finalproject;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 import java.util.Objects;
@@ -24,6 +27,7 @@ public class NoteFragment extends Fragment {
     private NoteModel note;
     private static final String TAG = "NoteFragment";
     CheckBox datecheck;
+    TextView dateTimeTextView;
 
     @Override
     //gets all the info from the notedescriptionactivity
@@ -48,6 +52,8 @@ public class NoteFragment extends Fragment {
         Log.d(TAG, "onCreateView()");
         View v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
+        this.dateTimeTextView = v.findViewById(R.id.datetime_tv);
+
         final EditText titleEditText = v.findViewById(R.id.et_title);
         if (this.note.getTitle() != null)
         {
@@ -61,6 +67,12 @@ public class NoteFragment extends Fragment {
         }
 
         datecheck = v.findViewById(R.id.date_check);
+        if (this.note.getDate() != null)
+        {
+            datecheck.setChecked(true);
+            dateTimeTextView.setText(this.note.getDate().toString(DateTimeFormat.longDate()));
+        }
+
 
         this.datecheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -78,6 +90,7 @@ public class NoteFragment extends Fragment {
                 else
                 {
                     note.setDate(null);
+                    dateTimeTextView.setText("");
                 }
             }
         });
@@ -95,5 +108,19 @@ public class NoteFragment extends Fragment {
     {
         Log.d(TAG, "setNote()");
         this.note = note;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == DateTimeFragment.REQUEST_CODE && resultCode == Activity.RESULT_OK)
+        {
+            // Get date extra from data
+            DateTime date = (DateTime) data.getSerializableExtra(DateTimeFragment.EXTRA_DATE);
+            this.note.setDate(date);
+
+            this.dateTimeTextView.setText(date.toString(DateTimeFormat.longDate()));
+        }
     }
 }

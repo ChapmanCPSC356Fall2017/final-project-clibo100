@@ -3,6 +3,8 @@ package edu.chapman.finalproject;
 import android.content.Context;
 import android.util.Log;
 
+import org.joda.time.DateTime;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -53,7 +55,17 @@ class NoteCollection {
                     text.append('\n');
                 }
                 br.close();
-                note.setBody(text.toString());
+                String firstFour = text.toString().substring(0, 4);
+                Log.d(TAG, "this is firstFour " + firstFour);
+                if (!Objects.equals(firstFour, "NULL"))
+                {
+                    note.setDate(DateTime.parse(text.toString().substring(0, 29)));
+                    note.setBody(text.toString().substring(29));
+                }
+                else
+                {
+                    note.setBody(text.toString().substring(4));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -124,10 +136,19 @@ class NoteCollection {
 
     void add(NoteModel note)
     {
+        Log.d(TAG, "add()");
         OutputStreamWriter outputStreamWriter;
         try {
             outputStreamWriter = new OutputStreamWriter(context.openFileOutput(note.getTitle(), Context.MODE_PRIVATE));
-            outputStreamWriter.write(note.getBody());
+            Log.d(TAG, "this is what datetime looks like" + note.getDate());
+            if (note.getDate() != null)
+            {
+                outputStreamWriter.write(note.getDate() + note.getBody());
+            }
+            else
+            {
+                outputStreamWriter.write("NULL" + note.getBody());
+            }
             outputStreamWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
