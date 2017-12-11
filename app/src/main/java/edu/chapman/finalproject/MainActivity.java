@@ -40,6 +40,5 @@ public abstract class MainActivity extends AppCompatActivity {
                 .replace(R.id.fl_fragment_container, frag)
                 .commit();
     }
-
 }
 

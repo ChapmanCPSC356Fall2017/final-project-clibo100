@@ -44,6 +44,27 @@
                 android:layout_height="wrap_content"
                 android:text="@string/set_timed_reminder"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/button_setdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_date"
+                android:visibility="gone"
+                tools:ignore="ButtonStyle" />
+            <Button
+                android:id="@+id/button_settime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/set_time"
+                android:visibility="gone"
+                tools:ignore="ButtonStyle" />
+        </LinearLayout>
         <TextView
             android:id="@+id/datetime_tv"
             android:layout_width="wrap_content"
@@ -55,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:onClick="onClickSave"
             android:text="@string/save"/>
 

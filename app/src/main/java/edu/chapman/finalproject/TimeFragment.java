@@ -8,22 +8,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
+import android.widget.TimePicker;
 
 import org.joda.time.DateTime;
 
-public class DateTimeFragment extends DialogFragment
+public class TimeFragment extends DialogFragment
 {
-    public static final int REQUEST_CODE = 1000;
-    private static final String ARG_DATE = "arg_date";
-    public static final String EXTRA_DATE = "extra_date";
+    public static final int REQUEST_CODE = 2000;
+    private static final String ARG_TIME = "arg_time";
+    public static final String EXTRA_TIME = "extra_time";
 
-    public static DateTimeFragment GetInstance(DateTime date)
+    public static TimeFragment GetInstance(DateTime date)
     {
-        DateTimeFragment frag = new DateTimeFragment();
+        TimeFragment frag = new TimeFragment();
 
         Bundle b = new Bundle();
-        b.putSerializable(ARG_DATE, date);
+        b.putSerializable(ARG_TIME, date);
 
         frag.setArguments(b);
 
@@ -34,13 +34,13 @@ public class DateTimeFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
-        DateTime date = (DateTime) getArguments().getSerializable(ARG_DATE);
+        DateTime date = (DateTime) getArguments().getSerializable(ARG_TIME);
 
-        final DatePicker picker = new DatePicker(getActivity());
+        final TimePicker picker = new TimePicker(getActivity());
         if (date != null)
         {
-            picker.init(date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth(), null);
-
+            picker.setHour(date.getHourOfDay());
+            picker.setMinute(date.getMinuteOfDay());
         }
 
         AlertDialog dialog;
@@ -52,10 +52,10 @@ public class DateTimeFragment extends DialogFragment
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-                        DateTime date = new DateTime(picker.getYear(), picker.getMonth() + 1, picker.getDayOfMonth(), 0, 0);
+                        DateTime date = new DateTime(1, 1, 1, picker.getHour(), picker.getMinute());
 
                         Intent intent = new Intent();
-                        intent.putExtra(EXTRA_DATE, date);
+                        intent.putExtra(EXTRA_TIME, date);
 
                         getTargetFragment().onActivityResult(REQUEST_CODE, Activity.RESULT_OK, intent);
                     }

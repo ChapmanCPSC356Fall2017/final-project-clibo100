@@ -87,7 +87,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
             this.titleTextView.setText(note.getTitle());
             if (note.getDate() != null)
             {
-                this.dateTextView.setText("Reminder: " + note.getDate().toString(DateTimeFormat.longDate()));
+                this.dateTextView.setText("Reminder: " + note.getDate().toString(DateTimeFormat.longDateTime()));
             }
             else
             {

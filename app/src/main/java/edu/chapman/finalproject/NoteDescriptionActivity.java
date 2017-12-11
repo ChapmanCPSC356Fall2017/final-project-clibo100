@@ -3,7 +3,6 @@ package edu.chapman.finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,7 @@ public class NoteDescriptionActivity extends MainActivity{
     EditText titleEditText, bodyEditText;
     CheckBox dateCheck;
     TextView dateTimeTextView;
-    NoteFragment frag;
+    NoteDescriptionFragment frag;
 
     @Override
     //pretty self explanatory tbh
@@ -29,7 +28,7 @@ public class NoteDescriptionActivity extends MainActivity{
         Log.d(TAG, "getFragment()");
         Bundle extras = getIntent().getExtras();
 
-        NoteFragment frag = new NoteFragment();
+        NoteDescriptionFragment frag = new NoteDescriptionFragment();
         frag.setArguments(extras);
         this.frag = frag;
 
@@ -81,4 +80,5 @@ public class NoteDescriptionActivity extends MainActivity{
 
         }
     }
+
 }
