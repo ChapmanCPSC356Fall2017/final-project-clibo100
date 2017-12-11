@@ -11,10 +11,12 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/darker_gray"
+        android:background="#025f1d"
         android:elevation="4dp"
         app:title="@string/app_name"
-        app:titleTextColor="#000000"
+        app:titleTextAppearance="@style/AudioFileInfoOverlayText"
+        app:titleTextColor="@android:color/white"
+        android:layout_marginBottom="5dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <FrameLayout
         android:id="@+id/fl_fragment_container"
@@ -22,6 +24,5 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
     </FrameLayout>
-
 
 </RelativeLayout>

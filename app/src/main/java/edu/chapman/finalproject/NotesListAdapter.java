@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.joda.time.format.DateTimeFormat;
+
 public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.ViewHolder>{
     private final String LOGTAG = "ListAdapter";
     private Context context;
@@ -63,6 +65,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
         private NoteModel note;
 
         private TextView titleTextView;
+        private TextView dateTextView;
 
         //constructor
         ViewHolder(View itemView)
@@ -72,14 +75,23 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
             itemView.setOnClickListener(this);
 
             this.titleTextView = itemView.findViewById(R.id.tv_title);
+            this.dateTextView = itemView.findViewById(R.id.tv_date);
         }
 
         //sets text and stuff
         void setup(NoteModel note)
         {
             this.note = note;
-
             this.titleTextView.setText(note.getTitle());
+            if (note.getDate() != null)
+            {
+                this.dateTextView.setText("Reminder: " + note.getDate().toString(DateTimeFormat.longDate()));
+            }
+            else
+            {
+                this.dateTextView.setText("");
+                this.dateTextView.setVisibility(View.GONE);
+            }
         }
 
         @Override
