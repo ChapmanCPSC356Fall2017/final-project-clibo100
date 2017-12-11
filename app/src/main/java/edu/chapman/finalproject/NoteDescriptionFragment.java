@@ -169,9 +169,19 @@ public class NoteDescriptionFragment extends Fragment {
         else if (requestCode == TimeFragment.REQUEST_CODE && resultCode == Activity.RESULT_OK)
         {
             this.resulttime = (DateTime) data.getSerializableExtra(TimeFragment.EXTRA_TIME);
-            this.resulttime = this.resulttime.withYear(Calendar.getInstance().get(Calendar.YEAR))
-                    .withMonthOfYear(Calendar.getInstance().get(Calendar.MONTH))
-                    .withDayOfMonth(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+
+            if (Calendar.getInstance().get(Calendar.MONTH) != 12)
+            {
+                this.resulttime = this.resulttime.withYear(Calendar.getInstance().get(Calendar.YEAR))
+                        .withMonthOfYear(Calendar.getInstance().get(Calendar.MONTH)+1)
+                        .withDayOfMonth(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            }
+            else
+            {
+                this.resulttime = this.resulttime.withYear(Calendar.getInstance().get(Calendar.YEAR))
+                        .withMonthOfYear(1)
+                        .withDayOfMonth(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            }
         }
 
         if (resultdate == null)
