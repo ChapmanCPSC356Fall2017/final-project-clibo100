@@ -4,7 +4,7 @@ This is an android app that will let you take notes and set reminders for yourse
 
  
  
-known errors: 
+### known errors: 
 
 if using instant run, sometimes a file named instant-run will show up in the notes list. deleting this file is fine
 
@@ -13,7 +13,7 @@ on startup if a note has a reminder, the note will have a time displayed as -08:
 there seems to always be a newline character on the note body after closing and reopening the app. deleting and saving this newline doesn't make it go away and idk why
 
 
-TODO:
+### TODO:
 
 actually set up the notifications
 
