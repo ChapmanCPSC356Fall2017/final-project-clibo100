@@ -1,5 +1,6 @@
 package edu.chapman.finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -79,6 +80,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
         }
 
         //sets text and stuff
+        @SuppressLint("SetTextI18n")
         void setup(NoteModel note)
         {
             this.note = note;
