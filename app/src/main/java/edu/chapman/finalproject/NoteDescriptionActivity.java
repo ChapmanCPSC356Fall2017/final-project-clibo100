@@ -76,11 +76,6 @@ public class NoteDescriptionActivity extends MainActivity{
                 getApplicationContext().startActivity(listElementIntent);
                 return true;
 
-            case R.id.back_button:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-
-
             default:
                 return super.onOptionsItemSelected(item);
 

@@ -19,8 +19,10 @@ public abstract class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         NoteCollection.GetInstance(this);
         setContentView(R.layout.activity_main);
+
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
         showFragment(getFragment());
     }
 

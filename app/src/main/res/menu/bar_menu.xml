@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
+<menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:title="@string/back"
-        android:id="@+id/back_button"
-        app:showAsAction="always"
-        tools:ignore="AlwaysShowAction"
-        android:icon="@drawable/back"/>
     <item
         android:id="@+id/action"
         android:title="@string/add"

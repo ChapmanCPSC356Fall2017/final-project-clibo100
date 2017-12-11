@@ -23,6 +23,7 @@ public class NoteFragment extends Fragment {
     CheckBox datecheck;
     TextView dateTimeTextView;
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     //gets all the info from the notedescriptionactivity
     public void onCreate(@Nullable Bundle savedInstanceState)
@@ -32,6 +33,8 @@ public class NoteFragment extends Fragment {
 
         String listElementId = getArguments().getString(NoteDescriptionActivity.EXTRA_NOTE_ID);
         this.note = NoteCollection.GetInstance(getContext()).getListElement(listElementId);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Nullable
