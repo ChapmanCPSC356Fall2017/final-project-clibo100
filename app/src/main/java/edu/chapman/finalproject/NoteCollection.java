@@ -71,7 +71,10 @@ class NoteCollection {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            notes.add(note);
+            if (!Objects.equals(note.getTitle(), "instant-run"))
+            {
+                notes.add(note);
+            }
 
         }
     }

@@ -25,7 +25,7 @@ public class NoteDescriptionFragment extends Fragment {
     private static final String TAG = "NoteDescriptionFragment";
     View v;
     CheckBox datecheck;
-    TextView dateTimeTextView;
+    TextView dateTimeTextView, actualDateTimeTextView;
     Button setDateButton, setTimeButton;
     DateTime resultdate = null, resulttime = null, date;
 
@@ -56,6 +56,7 @@ public class NoteDescriptionFragment extends Fragment {
         this.v = inflater.inflate(R.layout.fragment_notedescription, container, false);
 
         this.dateTimeTextView = v.findViewById(R.id.datetime_tv);
+        this.actualDateTimeTextView = v.findViewById(R.id.actual_datetime_tv);
         this.setDateButton = v.findViewById(R.id.button_setdate);
         this.setTimeButton = v.findViewById(R.id.button_settime);
         this.resulttime = null;
@@ -97,6 +98,7 @@ public class NoteDescriptionFragment extends Fragment {
             });
             datecheck.setChecked(true);
             dateTimeTextView.setText(this.note.getDate().toString(DateTimeFormat.longDateTime()));
+            actualDateTimeTextView.setText(this.note.getDate().toString());
         }
 
 
@@ -134,6 +136,7 @@ public class NoteDescriptionFragment extends Fragment {
                     setDateButton.setVisibility(View.GONE);
                     note.setDate(null);
                     dateTimeTextView.setText(R.string.remindernotset);
+                    actualDateTimeTextView.setText("");
                     resultdate = null;
                     resulttime = null;
                 }
@@ -186,22 +189,37 @@ public class NoteDescriptionFragment extends Fragment {
 
         if (resultdate == null)
         {
-            this.date = resulttime;
+            if (this.note.getDate() == null)
+            {
+                this.date = resulttime;
+            }
+            else
+            {
+                this.date = this.date.withHourOfDay(resulttime.getHourOfDay())
+                        .withMinuteOfHour(resulttime.getMinuteOfHour());
+            }
         }
         else if (resulttime == null)
         {
-            this.date = resultdate;
+            if (this.note.getDate() == null)
+            {
+                this.date = resultdate;
+            }
+            else
+            {
+                this.date = this.note.getDate().withYear(resultdate.getYear())
+                        .withMonthOfYear(resultdate.getMonthOfYear())
+                        .withDayOfMonth(resultdate.getDayOfMonth());
+            }
         }
         else
         {
             this.date = resultdate;
-            this.date = this.date.withHourOfDay(resulttime.getHourOfDay()).withMinuteOfHour(resulttime.getMinuteOfHour());
+            this.date = this.date.withHourOfDay(resulttime.getHourOfDay())
+                    .withMinuteOfHour(resulttime.getMinuteOfHour());
             Log.d(TAG, "aaaaaaaaaaaaaaaa this is where date is"+date.toString(DateTimeFormat.longDateTime()));
         }
-
-        this.note.setDate(date);
-
-
         this.dateTimeTextView.setText(date.toString(DateTimeFormat.longDateTime()));
+        this.actualDateTimeTextView.setText(date.toString());
     }
 }

@@ -17,4 +17,6 @@
     <string name="set_date">Set Date</string>
     <string name="set_time">Set time</string>
     <string name="remindernotset">Reminder not set</string>
+    <string name="space" />
+    <string name="fuck">FUCK</string>
 </resources>

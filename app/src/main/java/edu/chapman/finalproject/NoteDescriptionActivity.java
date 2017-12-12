@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.joda.time.DateTime;
+
 import java.util.Objects;
 
 public class NoteDescriptionActivity extends MainActivity{
@@ -40,20 +42,25 @@ public class NoteDescriptionActivity extends MainActivity{
         titleEditText = findViewById(R.id.et_title);
         bodyEditText = findViewById(R.id.et_description);
         dateCheck = findViewById(R.id.date_check);
-        dateTimeTextView = findViewById(R.id.datetime_tv);
+        dateTimeTextView = findViewById(R.id.actual_datetime_tv);
 
         NoteModel note = frag.getNote();
 
         String old_title = note.getTitle();
         note.setTitle(titleEditText.getEditableText().toString());
         note.setBody(bodyEditText.getEditableText().toString());
+        Log.d(TAG, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + dateTimeTextView.getText().toString());
+        if (!dateTimeTextView.getText().toString().isEmpty())
+        {
+            note.setDate(DateTime.parse(dateTimeTextView.getText().toString()));
+        }
+
         if (note.getTitle() != null && !Objects.equals(note.getTitle(), "") && !Objects.equals(note.getTitle(), " "))
         {
             if (!Objects.equals(note.getTitle(), old_title)) {
                 NoteCollection.GetInstance(null).remove(old_title);
                 Log.d(TAG, "onClickSave() removed file with old title");
             }
-
             NoteCollection.GetInstance(null).add(note);
             Log.d(TAG, "onClickSave() added new note");
             frag.setNote(note);
