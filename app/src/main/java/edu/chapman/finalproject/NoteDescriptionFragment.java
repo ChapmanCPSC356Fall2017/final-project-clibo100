@@ -195,8 +195,8 @@ public class NoteDescriptionFragment extends Fragment {
             }
             else
             {
-                this.date = this.date.withHourOfDay(resulttime.getHourOfDay())
-                        .withMinuteOfHour(resulttime.getMinuteOfHour());
+                this.date = this.note.getDate().withHourOfDay(resulttime.getHourOfDay())
+                            .withMinuteOfHour(resulttime.getMinuteOfHour());
             }
         }
         else if (resulttime == null)

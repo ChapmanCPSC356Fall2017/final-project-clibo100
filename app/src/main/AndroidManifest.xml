@@ -21,6 +21,7 @@
         <activity android:name=".NoteDescriptionActivity"
             android:parentActivityName=".NotesListActivity"
             android:windowSoftInputMode="stateHidden"/>
+        <receiver android:name="edu.chapman.finalproject.NotificationPublisher"/>
     </application>
 
 </manifest>
