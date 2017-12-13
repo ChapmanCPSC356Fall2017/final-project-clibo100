@@ -45,7 +45,7 @@ public class TimeFragment extends DialogFragment
 
         AlertDialog dialog;
         dialog = new AlertDialog.Builder(getActivity())
-                .setTitle("Pick a date")
+                .setTitle("Pick a time")
                 .setView(picker)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
                 {

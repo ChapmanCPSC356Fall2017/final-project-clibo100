@@ -14,6 +14,7 @@ public class NotesListActivity extends MainActivity{
         Log.d(LOGTAG, "getFragment");
         return new NotesListFragment();
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action:
