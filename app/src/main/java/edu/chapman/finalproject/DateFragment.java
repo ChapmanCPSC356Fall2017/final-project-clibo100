@@ -18,6 +18,7 @@ public class DateFragment extends DialogFragment
     private static final String ARG_DATE = "arg_date";
     public static final String EXTRA_DATE = "extra_date";
 
+    //returns a new instance of the DateFragment class
     public static DateFragment GetInstance(DateTime date)
     {
         DateFragment frag = new DateFragment();
@@ -34,8 +35,10 @@ public class DateFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
+        //gets the date and time from the bundle
         DateTime date = (DateTime) getArguments().getSerializable(ARG_DATE);
 
+        //instantiates a new datepicker and gives it the date it should start on
         final DatePicker picker = new DatePicker(getActivity());
         if (date != null)
         {
@@ -43,6 +46,7 @@ public class DateFragment extends DialogFragment
 
         }
 
+        //makes a new alert dialogue with the datepicker it made
         AlertDialog dialog;
         dialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Pick a date")

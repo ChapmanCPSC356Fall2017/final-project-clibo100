@@ -28,6 +28,7 @@ public abstract class MainActivity extends AppCompatActivity {
         NoteCollection.GetInstance(this);
         setContentView(R.layout.activity_main);
 
+        //sets premade toolbar as actionbar
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -47,49 +48,6 @@ public abstract class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fl_fragment_container, frag)
                 .commit();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.d(TAG, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa onStart()");
-        super.onStart();
-        List<NoteModel> notes = NoteCollection.GetInstance(this).getListElements();
-        for (NoteModel note : notes) {
-            if (note.getDate() != null) {
-                long currentTime = SystemClock.elapsedRealtime();
-                long reminderTime = note.getDate().getMillis();
-                long delay = reminderTime - currentTime;
-                Log.d(TAG, "onStart delay = " + delay);
-                if (delay > 0)
-                {
-                    scheduleNotification(getNotification(note.getTitle()), delay);
-                }
-            }
-        }
-    }
-
-    private void scheduleNotification(Notification notification, long delay) {
-        Log.d(TAG, "schduleNotification");
-        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
-            Log.d(TAG, "schduleNotification alarmmanager.set");
-        }
-    }
-
-    private Notification getNotification(String content) {
-        Log.d(TAG, "getNotification()");
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Noter Reminder!");
-        builder.setContentText(content);
-        builder.setSmallIcon(R.drawable.icon);
-        return builder.build();
     }
 }
 

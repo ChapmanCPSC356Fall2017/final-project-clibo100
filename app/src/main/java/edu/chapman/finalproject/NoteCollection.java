@@ -40,13 +40,18 @@ class NoteCollection {
         Log.d(TAG, "NoteCollection()");
         this.context = context;
         this.notes = new ArrayList<>();
+
+        //gets all the files saved to the filesystem by this app
         File[] files = context.getFilesDir().listFiles();
+
+        //takes in each note from the filesystem and adds it to the collection
         for (File file : files)
         {
             NoteModel note = new NoteModel();
             note.setTitle(file.getName());
             StringBuilder text = new StringBuilder();
             BufferedReader br;
+            //reads in the body of the file
             try {
 
                 br = new BufferedReader(new FileReader(file));
@@ -58,7 +63,8 @@ class NoteCollection {
                 }
                 br.close();
                 String firstFour = text.toString().substring(0, 4);
-                Log.d(TAG, "this is firstFour " + firstFour);
+                //if the first four letters are null, the note has no reminder set. if it does, the first four will be the year of the reminder
+                //i know there's a better way to do this with databases but i dont know how to use SQLite so sorry
                 if (!Objects.equals(firstFour, "NULL"))
                 {
                     note.setDate(DateTime.parse(text.toString().substring(0, 29)));
@@ -71,6 +77,8 @@ class NoteCollection {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            //this fixes an error using instant run in android studio ignore it
             if (!Objects.equals(note.getTitle(), "instant-run"))
             {
                 notes.add(note);
@@ -119,6 +127,7 @@ class NoteCollection {
         this.notes.remove(position);
     }
 
+    //remove an element from the list
     void remove(String title)
     {
         File[] files = context.getFilesDir().listFiles();
@@ -141,6 +150,7 @@ class NoteCollection {
         }
     }
 
+    //adds a note to the list, saves it to the filesystem
     void add(NoteModel note)
     {
         Log.d(TAG, "add()");
