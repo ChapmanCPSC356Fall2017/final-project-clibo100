@@ -4,15 +4,20 @@ This is an android app that will let you take notes and set reminders for yourse
 
  
  
-### known errors: 
+### how to work it:
 
-on startup if a note has a reminder, the note will have a time displayed as -08:00 instead of PST. set date fixes this somehow
+To add a new note, click the add button in the upper right hand corner
 
-there seems to always be a newline character on the note body after closing and reopening the app. deleting and saving this newline doesn't make it go away and idk why
+To delete a note, swipe it off the screen in the list view
 
+to see a note's description, click on the note in the list view
 
-### TODO:
+to edit a note, click on the note in the list view and then fill to your liking
 
-actually set up the notifications
+to set a reminder, click the set reminder check box and then choose the date and time with the given dialogues
 
-error handling: make sure they can't pick a date/time in the past
+make sure you click save to save the note, going back without clicking save does not maintain changes
+
+### known issues
+
+although i have like 90% of the code for receiving notifications, my broadcast reciever never actually began working. what this means is that the notifications don't actually work, per se. i tried really hard, sorry.
