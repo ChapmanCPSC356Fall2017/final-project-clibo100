@@ -18,6 +18,3 @@ to set a reminder, click the set reminder check box and then choose the date and
 
 make sure you click save to save the note, going back without clicking save does not maintain changes
 
-### known issues
-
-although i have like 90% of the code for receiving notifications, my broadcast reciever never actually began working. what this means is that the notifications don't actually work, per se. i tried really hard, sorry.
